@@ -1,0 +1,13 @@
+#version 330 core
+layout (location = 0) in vec2 aPosition;
+layout (location = 1) in vec3 aColor;
+uniform vec2 offset;
+uniform float rotation;
+uniform float opacity;
+out vec4 vertexColor;
+void main(){
+    gl_Position.x = cos(rotation)*(aPosition.x/800.0f) - sin(rotation)*(aPosition.y/450.0f)/1.6*0.9 + offset.x/800.0f;
+    gl_Position.y = 1.6/0.9*sin(rotation)*(aPosition.x/800.0f) + cos(rotation)*(aPosition.y/450.0f) + offset.y/450.0f;
+    gl_Position.w = 1.0;
+    vertexColor = vec4(aColor.rgb, 1-opacity);
+}
